@@ -7,7 +7,9 @@ type Country = {
 
 async function getCountries(): Promise<Country[]> {
   const response = await fetch("https://restcountries.com/v3.1/all");
-  return response.json();
+  const data = await response.json();  
+  console.log(data); 
+  return data; 
 }
 
 export default async function Home() {
