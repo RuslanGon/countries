@@ -27,17 +27,11 @@ export default function RootLayout({
                 </div>
                 <h1 className="font-bold text-2xl">Countries App</h1>
               </div>
-
               {/* Компонент поиска */}
               <div className="flex items-center space-x-4">
-                <input
-                  type="text"
-                  className="p-2 border rounded-lg w-64"
-                  placeholder="Поиск страны..."
-                />
-                <button className="p-2 bg-blue-500 text-white rounded-lg">
-                  Найти
-                </button>
+                <input type="text" className="p-2 border rounded-lg w-64"
+                  placeholder="Поиск страны..." />
+                <button className="p-2 bg-blue-500 text-white rounded-lg">Найти</button>
               </div>
             </section>
           </nav>
