@@ -46,7 +46,9 @@ async function getCountryBordersByName(name: string) {
 
 // ✅ Типизация параметров для компонента CountryDetail
 interface CountryDetailProps {
-  params: { name: string };
+  params: {
+    name: string;
+  };
 }
 
 // ✅ Основной компонент CountryDetail
