@@ -36,19 +36,32 @@ export default async function CountryDetail({ params }: { params: { name: string
       <article className="flex md:flex-row flex-col justify-between min-w-full p-10 bg-white rounded-xl">
         <section>
           <h2 className="text-xl text-gray-800 mt-3">
-            <b>🏙️ Столица:</b> {country.capital?.[0] || "Не указано"}
+            <b>🏙️ Столица:</b> {country.capital}
           </h2>
           <h2 className="text-xl text-gray-800 mt-3">
-            <b>🗺️ Регион: </b> {country.region || "Не указано"}
+            <b>🗺️ Регион: </b>  {country.region} {country.subregion && `- ${country.subregion}`}
           </h2>
           <h2 className="text-xl text-gray-800 mt-3">
-            <b>👨‍👩‍👧‍👦 Население: </b> {country.population?.toLocaleString() || "Не указано"}
+            <b>👨‍👩‍👧‍👦 Население: </b> {country.population}
           </h2>
           <h2 className="text-xl text-gray-800 mt-3">
             <b>🗣️ Язык: </b> {country.languages ? Object.values(country.languages).join(", ") : "Не указано"}
           </h2>
         </section>
+        <div className="relative h-48 my-2 md:h-auto w-96 shadow-md md:order-last order-first">
+          <Image src={country.flags.svg} alt={country.flags.alt} fill />
+        </div>
       </article>
+      {/* <section>
+      <h3 className="mt-12 text-2xl font-semibold text-gray-800">
+          Neighbour countries
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full container gap-2">
+                {borderCountries?.map((border) =>(
+                    <CountryCard key={border.name} {...border} />
+                ))}
+        </div>
+      </section> */}
     </section>
   );
 }
