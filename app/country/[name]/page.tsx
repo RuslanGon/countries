@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Country } from "@/app/page";
+import CountryCard from "../../components/country-card/CountryCard";
+
 
 async function getCountryByName(name: string): Promise<Country | null> {
   try {
@@ -16,6 +18,33 @@ async function getCountryByName(name: string): Promise<Country | null> {
   }
 }
 
+async function getCountryBordersByName(name: string) {
+  try {
+    const response = await fetch("https://restcountries.com/v3.1/all");
+    if (!response.ok) throw new Error("Failed to fetch countries");
+    const countries: Country[] = await response.json();
+
+    const country = countries.find((c) => c.name.common === name);
+    if (!country || !country.borders) return [];
+
+    return country.borders
+      .map((border) => {
+        const borderCountry = countries.find((c) => c.cca3 === border);
+        if (!borderCountry) return null;
+        return {
+          name: borderCountry.name.common,
+          rusName: borderCountry.translations?.rus?.common || borderCountry.name.common,
+          flag: borderCountry.flags.svg,
+          flagAlt: borderCountry.flags.alt || "Flag",
+        };
+      })
+      .filter(Boolean);
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
 export default async function CountryDetail({ params }: { params: { name: string } }) {
   if (!params?.name) {
     return (
@@ -26,6 +55,7 @@ export default async function CountryDetail({ params }: { params: { name: string
   }
 
   const country = await getCountryByName(params.name);
+  const borderCountries = await getCountryBordersByName(decodeURI(params.name));
 
   if (!country) {
     return (
@@ -80,6 +110,14 @@ export default async function CountryDetail({ params }: { params: { name: string
           <Image src={country.flags.svg} alt={country.flags.alt} fill />
         </div>
       </article>
+        <section>
+      <h3 className="mt-12 text-2xl font-semibold text-gray-800"> Neighbour countries</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full container gap-2">
+                {borderCountries?.map((border) =>(
+                    <CountryCard key={border.name} {...border} />
+                ))}
+        </div>
+      </section>
     </section>
   );
 }
