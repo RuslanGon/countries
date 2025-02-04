@@ -22,7 +22,7 @@ export default function RootLayout({
           <nav className="w-full bg-white h-16 flex items-center justify-center">
             <section className="container flex items-center gap-3">
               <div className="animate-[spin_3s_linear_infinite]">
-                <Image src="/logo.jpg" alt="Earth" width={48} height={48} />
+              <Image src="/logo.jpg" alt="Logo of the Countries App" width={48} height={48} />
               </div>
               <h1 className="font-bold text-2xl">Countries App</h1>
             </section>
