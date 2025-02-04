@@ -68,8 +68,7 @@ export default async function CountryDetail({ params }: { params: { name: string
               {Object.values(country.languages).map((language) => (
                 <span
                   key={language}
-                  className="inline-block px-2 bg-indigo-700 mr-2 text-white text-sm rounded-full"
-                >
+                  className="inline-block px-2 bg-indigo-700 mr-2 text-white text-sm rounded-full">
                   {language}
                 </span>
               ))}
