@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Country } from "@/app/page";
 import CountryCard from "../../components/country-card/CountryCard";
 
-// ✅ Функция получения данных о стране по имени
+// Функция получения данных о стране по имени
 async function getCountryByName(name: string): Promise<Country | null> {
   try {
     const response = await fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`);
@@ -17,7 +17,7 @@ async function getCountryByName(name: string): Promise<Country | null> {
   }
 }
 
-// ✅ Функция получения соседних стран
+// Функция получения соседних стран
 async function getCountryBordersByName(name: string) {
   try {
     const response = await fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`);
@@ -44,22 +44,13 @@ async function getCountryBordersByName(name: string) {
   }
 }
 
-// ✅ Типизация параметров для компонента CountryDetail
-interface CountryDetailProps {
-  params: {
-    name: string;
-  };
-}
 
-// ✅ Основной компонент CountryDetail
-export default async function CountryDetail({ params }: CountryDetailProps) {
-  if (!params?.name) {
-    return <h1 className="text-3xl text-red-600 text-center mt-16">Invalid country name</h1>;
-  }
 
-  const decodedName = decodeURIComponent(params.name);
-  const country = await getCountryByName(decodedName);
-  const borderCountries = await getCountryBordersByName(decodedName);
+// Основной компонент CountryDetail
+export default async function CountryDetail({ params }: { params: { name: string } }) {
+  const { name } = params;
+  const country = await getCountryByName(name);
+  const borderCountries = await getCountryBordersByName(name);
 
   if (!country) {
     return <h1 className="text-3xl text-red-600 text-center mt-16">Country not found</h1>;
