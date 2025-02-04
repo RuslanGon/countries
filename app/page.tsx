@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-type Country = {
+export type Country = {
   name: {
     common: string;
   };
@@ -9,6 +9,21 @@ type Country = {
     svg: string;
     alt: string;
   };
+  translations: {
+    rus: {
+      common: string;
+      official: string;
+    };
+  };
+  capital: string;
+  region: string;
+  subregion: string;
+  population: number;
+  languages: {
+    [key: string]: string;
+  };
+  borders?: string[];
+  cca3: string;
 };
 
 async function getCountries(): Promise<Country[]> {
