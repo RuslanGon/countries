@@ -30,7 +30,7 @@ export default async function CountryDetail({params: {name}} : {params: {name: s
               <b>👨‍👩‍👧‍👦 Население: </b>
             </h2>
             <h2 className="text-xl text-gray-800 mt-3">
-              <b>👨‍👩‍👧‍👦 Язык: </b>
+              <b>🗣️ Язык: </b>
             </h2>
           </section>
         </article>
