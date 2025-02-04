@@ -16,7 +16,24 @@ export default async function CountryDetail({params: {name}} : {params: {name: s
         </h1>
         <Link href="/" className="flex items-center py-2 gap-1">
           <Image src="/arrow.svg" alt="go back home" width={24} height={24} />
+          <h1 className="font-bold text-xl text-center mt-1">Back</h1>
         </Link>
+        <article className=" flex md:flex-row flex-col justify-between min-w-full p-10 bg-white rounded-xl">
+          <section>
+            <h2 className="text-xl text-gray-800 mt-3">
+              <b>🏙️ Столица:</b>
+            </h2>
+            <h2 className="text-xl text-gray-800 mt-3">
+              <b>🗺️ Регион: </b>
+            </h2>
+            <h2 className="text-xl text-gray-800 mt-3">
+              <b>👨‍👩‍👧‍👦 Население: </b>
+            </h2>
+            <h2 className="text-xl text-gray-800 mt-3">
+              <b>👨‍👩‍👧‍👦 Язык: </b>
+            </h2>
+          </section>
+        </article>
       </section>
     );
 }
