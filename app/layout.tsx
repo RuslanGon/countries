@@ -21,11 +21,13 @@ export default function RootLayout({
         <main className="bg-gray-100 min-h-screen flex flex-col items-center">
           <nav className="w-full bg-white h-16 flex items-center justify-center">
             <section className="container flex items-center gap-3">
-              <Image src="/logo.jpg" alt="Earth" width={48} height={48} />
+              <div className="animate-[spin_3s_linear_infinite]">
+                <Image src="/logo.jpg" alt="Earth" width={48} height={48} />
+              </div>
               <h1 className="font-bold text-2xl">Countries App</h1>
             </section>
           </nav>
-        {children}
+          {children}
         </main>
       </body>
     </html>
