@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Country } from "@/app/page";
 import CountryCard from "../../components/country-card/CountryCard";
 
+
 // ✅ Функция получения данных о стране по имени
 async function getCountryByName(name: string): Promise<Country | null> {
   try {
@@ -45,7 +46,8 @@ async function getCountryBordersByName(name: string) {
 }
 
 // ✅ Основной компонент
-export default async function CountryDetail({ params }: { params: { name?: string } }) {
+export default async function CountryDetail({ params }: { params: { name: string } }) {
+
   if (!params || !params.name) {
     return <h1 className="text-3xl text-red-600 text-center mt-16">Invalid country name</h1>;
   }
