@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./globals.css";
 import { Nunito_Sans } from "next/font/google";
 import Image from "next/image";
@@ -13,6 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    setSearchQuery(searchQuery)
+  },[searchQuery])
 
   return (
     <html lang="en">
@@ -31,20 +34,12 @@ export default function RootLayout({
                 </div>
                 <h1 className="font-bold text-2xl">Countries App</h1>
               </div>
-              {/* Компонент поиска */}
-              {/* <div className="flex items-center space-x-4">
-                <input
-                  type="text"
-                  className="p-2 border rounded-lg w-64"
-                  placeholder="Поиск страны..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div> */}
             </section>
           </nav>
           {/* Передаем поисковый запрос в дочерние компоненты */}
-          {children && typeof children === "function" ? children(searchQuery) : children}
+          {children && typeof children === "function" ? 
+          // children
+          (searchQuery) : children}
         </main>
       </body>
     </html>

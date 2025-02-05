@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import CountryCard from "./components/country-card/CountryCard";
 
+
 export type Country = {
   name: {
     common: string;
@@ -60,6 +61,7 @@ export default function Home() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+      
 
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full container gap-2 mt-4">
         {filteredCountries.map((country) => (
